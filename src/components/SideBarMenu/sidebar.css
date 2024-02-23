@@ -1,0 +1,9 @@
+.mini-icon {
+  z-index: 99999;
+}
+
+.toggle-icon {
+  width: 34px;
+  height: 34px;
+  background-color: #cfd4ed;
+}
