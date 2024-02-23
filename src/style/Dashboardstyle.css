@@ -1,0 +1,77 @@
+.dash1{
+    margin-top: 5%;
+    width: 200px;
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    /* border: #000 solid; */
+}
+
+.dash2{
+font-family: Arial;
+font-size: 12px;
+font-weight: 700;
+line-height: 18px;
+letter-spacing: 0em;
+text-align: left;
+}
+.dash3{
+font-family: Georgia;
+opacity: 0.5;
+font-size: 12px;
+font-weight: 400;
+line-height: 18px;
+letter-spacing: 0em;
+text-align: left;
+}
+.dash4{
+    margin-top: 1%;
+    margin-left: 5%;
+    width: 230px;
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    /* border: #000 solid; */
+}
+.dash5{
+    width: 4px;
+    height: 24px;
+    background-color: #0D28A6;
+    border: none;
+}
+.dash6{
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.dash7{
+    margin-top: 2%;
+    margin-left: 7%;
+    width: 60px;
+    /* border: #000 solid; */
+}
+.dash8{
+    margin-top: 2%;
+    margin-left: 7%;
+    /* width: 150px; */
+    /* border: #000 solid; */
+}
+.dash9{
+    height: 36px;
+    width: 122px;
+    
+}
+.dash10{
+    width: 43px;
+    height: 35px;
+    background-color: #0D28A6;
+    color: #fff;
+    border: none;
+}
