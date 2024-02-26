@@ -28,15 +28,16 @@ const SideBarMenu = ({ menu = "Dashboard" }) => {
               <div className="toggle-icon mb-2"></div>
             </a>
           </div>
-          {menuItem.map((item, index) => (
+          {menuItem.map((item) => (
             <NavLink
               to={item.path}
-              key={index}
-              className={(isActive) =>
-                "nav-link" +
-                (!isActive ? " unselected" : "") +
-                " w-full py-3 text-sm text-center text-white focus:outline-nones transition-colors duration-200 dark:text-gray-400 dark:hover:bg-white hover:bg-slate-400 no-underline"
-              }
+              key={item.name}
+              className={({ isActive }) => {
+                return (
+                  ` w-full py-3 text-sm text-center text-white no-underline hover:bg-slate-400` +
+                  (isActive ? "  bg-slate-400 " : "")
+                );
+              }}
             >
               <div className="flex justify-center">{item.icon}</div>
               <div className="pt-1">{item.name}</div>
