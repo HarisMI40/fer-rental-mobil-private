@@ -1,5 +1,6 @@
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiSearch } from "react-icons/fi";
 import { useState } from "react";
+import "./navigation.css";
 
 const NavigationBar = () => {
   const [hidden, setHidden] = useState(true);
@@ -11,10 +12,12 @@ const NavigationBar = () => {
           <div className="flex items-center ">
             <div className="flex items-center ms-3">
               <div className="flex w-60 mx-5 rounded bg-white border-1 border-gray-400">
-                <div className="wrapper">
-                  <div className="icon"></div>
+                <div className="wrapper relative">
+                  <div className="icon absolute">
+                    <FiSearch />
+                  </div>
                   <input
-                    className=" w-full rounded-sm  bg-transparent px-4 py-1 text-gray-400 "
+                    className=" w-full rounded-sm  bg-transparent ps-7 pe-2 py-1 text-gray-400 "
                     type="search"
                     name="search"
                     placeholder="Search..."

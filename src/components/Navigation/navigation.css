@@ -1,0 +1,19 @@
+.nav-menu {
+  box-shadow: 0px 2px 8px 0px #0000000d;
+}
+.icon {
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 4px;
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+}
+
+.input {
+  height: 50px;
+  box-sizing: border-box;
+  padding-left: 2rem;
+}
