@@ -1,3 +1,4 @@
+import { FiChevronDown } from "react-icons/fi";
 import { useState } from "react";
 
 const NavigationBar = () => {
@@ -10,12 +11,15 @@ const NavigationBar = () => {
           <div className="flex items-center ">
             <div className="flex items-center ms-3">
               <div className="flex w-60 mx-5 rounded bg-white border-1 border-gray-400">
-                <input
-                  className=" w-full rounded-sm  bg-transparent px-4 py-1 text-gray-400 "
-                  type="search"
-                  name="search"
-                  placeholder="Search..."
-                />
+                <div className="wrapper">
+                  <div className="icon"></div>
+                  <input
+                    className=" w-full rounded-sm  bg-transparent px-4 py-1 text-gray-400 "
+                    type="search"
+                    name="search"
+                    placeholder="Search..."
+                  />
+                </div>
                 <button
                   type="submit"
                   className="  bg-white rounded-sm ring-1 ring-blue-800  px-2 py-0 text-blue-800 font-medium hover:bg-blue-500 hover:text-white"
@@ -37,6 +41,7 @@ const NavigationBar = () => {
                     alt="user photo"
                   />
                   <span className="flex text-gray-700">Neil Sims</span>
+                  <FiChevronDown color="gray" size={24} />
                 </button>
               </div>
               <div

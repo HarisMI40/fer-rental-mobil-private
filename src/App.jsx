@@ -1,21 +1,19 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Sidebar from "./components/Sidebar";
-import Cars from "./pages/Cars.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+
 import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Cars from "./pages/Cars";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Sidebar>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="/cars" element={<Cars />} />
-        </Routes>
-      </Sidebar>
-    </BrowserRouter>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/Dashboard" element={<Home />} />
+        <Route path="/Cars" element={<Cars />} />
+      </Routes>
+    </Router>
   );
 }
 
