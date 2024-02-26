@@ -1,15 +1,15 @@
-import ListCar from "../Content/ListCar/ListCar";
+import Dashboard from "../Content/Dashboard/Dashboard";
 import NavigationBar from "../components/Navigation/NavigationBar";
 import SideBarMenu from "../components/SideBarMenu/SideBarMenu";
 
-const Cars = () => {
+const Home = () => {
   return (
     <div className="flex">
+      <SideBarMenu />
       <NavigationBar />
-      <SideBarMenu menu={"Cars"} />
-      <ListCar />
+      <Dashboard />
     </div>
   );
 };
 
-export default Cars;
+export default Home;

@@ -1,0 +1,32 @@
+.card-text {
+  margin-top: 1%;
+  width: 230px;
+  gap: 15px;
+  display: flex;
+  padding-top: 20px;
+  /* border: #000 solid; */
+}
+
+.blue-tick {
+  width: 4px;
+  height: 24px;
+  background-color: #0d28a6;
+  border: none;
+}
+
+.subtitle {
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.blue-btn {
+  width: 43px;
+  height: 36px;
+  background-color: #0d28a6;
+  color: #fff;
+  border: none;
+}
