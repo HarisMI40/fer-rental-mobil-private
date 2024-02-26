@@ -20,7 +20,7 @@ const NavigationBar = () => {
                     className=" w-full rounded-sm  bg-transparent ps-7 pe-2 py-1 text-gray-400 "
                     type="search"
                     name="search"
-                    placeholder="Search..."
+                    placeholder="Search"
                   />
                 </div>
                 <button

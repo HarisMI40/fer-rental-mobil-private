@@ -1,10 +1,23 @@
 import { useState } from "react";
 import { FiHome, FiTruck } from "react-icons/fi";
 import "./sidebar.css";
+import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const SideBarMenu = ({ menu = "Dashboard" }) => {
   const [open, setOpen] = useState(true);
+  const menuItem = [
+    {
+      path: "/dashboard",
+      name: "Dashboard",
+      icon: <FiHome size={24} />,
+    },
+    {
+      path: "/cars",
+      name: "Cars",
+      icon: <FiTruck size={24} />,
+    },
+  ];
 
   return (
     <aside className="flex">
@@ -15,25 +28,20 @@ const SideBarMenu = ({ menu = "Dashboard" }) => {
               <div className="toggle-icon mb-2"></div>
             </a>
           </div>
-          <a
-            href="/Dashboard"
-            className=" w-full py-3 text-sm text-center text-white focus:outline-nones transition-colors duration-200 dark:text-gray-400 dark:hover:bg-white hover:bg-slate-400"
-          >
-            <div className="flex justify-center">
-              <FiHome size={24} />
-            </div>
-            <div className="pt-1">Dashboard</div>
-          </a>
-
-          <a
-            href="/Cars"
-            className=" w-full py-3 text-sm text-center text-white focus:outline-nones transition-colors duration-200 dark:text-gray-400 dark:hover:bg-white hover:bg-slate-400"
-          >
-            <div className="flex justify-center">
-              <FiTruck size={24} />
-            </div>
-            <div className="pt-1">Cars</div>
-          </a>
+          {menuItem.map((item, index) => (
+            <NavLink
+              to={item.path}
+              key={index}
+              className={(isActive) =>
+                "nav-link" +
+                (!isActive ? " unselected" : "") +
+                " w-full py-3 text-sm text-center text-white focus:outline-nones transition-colors duration-200 dark:text-gray-400 dark:hover:bg-white hover:bg-slate-400 no-underline"
+              }
+            >
+              <div className="flex justify-center">{item.icon}</div>
+              <div className="pt-1">{item.name}</div>
+            </NavLink>
+          ))}
         </div>
       </div>
 
