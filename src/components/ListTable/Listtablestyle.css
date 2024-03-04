@@ -10,11 +10,11 @@
   transform: translate(-50%, -50%); */
 }
 table {
-  width: 1100px;
   height: 800px;
   border-collapse: collapse;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  color: black;
 }
 th,
 td {
@@ -26,7 +26,7 @@ th {
   text-align: left;
 }
 thead th {
-  background-color: #55608f;
+  background-color: #cfd4ed;
 }
 tbody tr:hover {
   background-color: rgb(11, 10, 10);

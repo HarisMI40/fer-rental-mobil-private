@@ -1,0 +1,6 @@
+.successCol {
+  background-color: #5cb85f !important;
+}
+.successCol:hover {
+  background-color: #428344 !important;
+}

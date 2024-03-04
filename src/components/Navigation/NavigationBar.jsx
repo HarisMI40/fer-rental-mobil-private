@@ -25,7 +25,7 @@ const NavigationBar = () => {
                 </div>
                 <button
                   type="submit"
-                  className="  bg-white rounded-sm ring-1 ring-blue-800  px-2 py-0 text-blue-800 font-medium hover:bg-blue-500 hover:text-white"
+                  className=" bg-white rounded-sm ring-1 ring-blue-800  px-2 py-0 text-blue-800 font-medium hover:bg-blue-800 hover:text-white"
                 >
                   Search
                 </button>
@@ -33,13 +33,13 @@ const NavigationBar = () => {
               <div>
                 <button
                   type="button"
-                  className="flex text-sm gap-2 items-center"
+                  className="flex text-sm gap-2 items-center "
                   aria-expanded="false"
                   data-dropdown-toggle="dropdown-user"
                   onClick={() => setHidden(!hidden)}
                 >
                   <img
-                    className="w-8 h-8 rounded-full"
+                    className="w-8 h-8 rounded-full hover:ring-2 ring-blue-600"
                     src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                     alt="user photo"
                   />

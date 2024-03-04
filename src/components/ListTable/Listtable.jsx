@@ -44,7 +44,7 @@ const Listtable = () => {
 
   return (
     <div className="container1">
-      <table {...getTableProps()}>
+      <table className=" w-full" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroups) => (
             <tr {...headerGroups.getHeaderGroupProps()}>

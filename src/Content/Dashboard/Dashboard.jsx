@@ -14,12 +14,12 @@ const Dashboard = () => {
         </div>
         <div className="mt-5">Mounth</div>
         <div className="flex items-centers">
-          <select className="w-36 h-9">
+          <select className="w-36 h-9 cursor-pointer">
             <option>June-2021</option>
             <option>June-2022</option>
             <option>June-2023</option>
           </select>
-          <button className="blue-btn">Go</button>
+          <button className="blue-btn hover:bg-blue-700 ">Go</button>
         </div>
         <Barchart />
       </div>
