@@ -2,7 +2,7 @@ import { Bar } from "react-chartjs-2";
 
 const Barchart = () => {
   return (
-    <div className="h-96 mt-10">
+    <div className="h-full mt-10 w-full">
       <Bar
         options={{
           plugins: {
