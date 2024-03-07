@@ -1,20 +1,44 @@
-import React, { useMemo, useState } from "react";
-import fakeData from "./../MOCK_DATA.json";
-import { useTable } from "react-table";
-import "./Listtablestyle.css";
+import React, { useMemo, useState, useEffect } from "react";
+import { useTable, useSortBy } from "react-table";
 import ReactPaginate from "react-paginate";
+import "./Listtablestyle.css";
 
 const Listtable = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10); // Number of items per page
+  const [rowsPerPage, setRowsPerPage] = useState(10); // Number of items per page initially
+  const [data, setData] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [accessToken, setAccessToken] = useState("");
+
   const PER_PAGE_OPTIONS = [5, 10, 15, 20]; // Options for rows per page
 
-  const data = useMemo(() => {
-    const startIndex = currentPage * rowsPerPage;
-    return fakeData.slice(startIndex, startIndex + rowsPerPage);
-  }, [currentPage, rowsPerPage]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://api-car-rental.binaracademy.org/admin/v2/order?sort=user_email:asc&page=${
+            currentPage + 1
+          }&pageSize=${rowsPerPage}`,
+          {
+            headers: {
+              access_token:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc",
+            },
+          }
+        );
+        const result = await response.json();
+        console.log("API Response:", result); // Log the API response
+        setData(result.orders);
+        setTotalCount(result.count);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  const pageCount = Math.ceil(fakeData.length / rowsPerPage);
+    fetchData();
+  }, [currentPage, rowsPerPage, accessToken]);
+
+  const pageCount = Math.ceil(totalCount / rowsPerPage);
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
@@ -29,61 +53,81 @@ const Listtable = () => {
     () => [
       {
         Header: "No",
-        accessor: "No",
+        accessor: (_, index) => currentPage * rowsPerPage + index + 1,
       },
       {
         Header: "Email",
-        accessor: "email",
+        accessor: "User.email",
+        canSort: true,
       },
       {
         Header: "Car",
-        accessor: "Car",
+        accessor: "CarId",
+        canSort: true,
       },
       {
         Header: "Start Rent",
-        accessor: "Start rent",
+        accessor: "start_rent_at",
       },
       {
         Header: "Finish Rent",
-        accessor: "Finish Rent",
+        accessor: "finish_rent_at",
       },
       {
         Header: "Price",
-        accessor: "Price",
+        accessor: "total_price",
       },
       {
         Header: "Category",
         accessor: "Category",
       },
     ],
-    []
+    [currentPage, rowsPerPage]
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+    useTable({ columns, data }, useSortBy);
 
   return (
     <div>
       <div className="container1">
         <table {...getTableProps()}>
           <thead>
-            {headerGroups.map((headerGroups) => (
-              <tr {...headerGroups.getHeaderGroupProps()}>
-                {headerGroups.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
+            {headerGroups.map((headerGroup) => (
+              <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th
+                    key={column.id}
+                    {...column.getHeaderProps(
+                      column.canSort ? column.getSortByToggleProps() : {}
+                    )}
+                  >
                     {column.render("Header")}
+                    {column.canSort && (
+                      <span>
+                        {column.isSorted
+                          ? column.isSortedDesc
+                            ? " 🔽"
+                            : " 🔼"
+                          : ""}
+                      </span>
+                    )}
                   </th>
                 ))}
               </tr>
             ))}
           </thead>
+
           <tbody {...getTableBodyProps()}>
             {rows.map((row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
+                <tr key={row.id} {...row.getRowProps()}>
                   {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
+                    <td key={cell.id} {...cell.getCellProps()}>
+                      {" "}
+                      {cell.render("Cell")}{" "}
+                    </td>
                   ))}
                 </tr>
               );
