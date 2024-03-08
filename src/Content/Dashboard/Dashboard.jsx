@@ -7,8 +7,8 @@ const Dashboard = () => {
   return (
     <div className="content w-full bg-slate-100 overflow-hidden">
       <Breadcrumb />
-      <div className="chart-section ps-3 mt-10 text-black">
-        <div className="card-text">
+      <div className="chart-section ps-3 mt-10 text-black w-full">
+        <div className="card-text w-full">
           <ul className="blue-tick" />
           <ul className="subtitle">Rented Car Data Visualization</ul>
         </div>
