@@ -24,7 +24,12 @@ const SideBarMenu = ({ menu = "Dashboard" }) => {
       <div className="mini-icon w-20 h-full py-4 bg-blue-800 ">
         <div className="fixed flex flex-col w-20 gap-2">
           <div className="flex justify-center">
-            <a href="#" onClick={() => setOpen(!open)}>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault(), setOpen(!open);
+              }}
+            >
               <div className="toggle-icon mb-2"></div>
             </a>
           </div>

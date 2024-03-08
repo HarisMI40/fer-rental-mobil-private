@@ -30,3 +30,6 @@
   color: #fff;
   border: none;
 }
+canvas {
+  min-width: 1150px !important;
+}
