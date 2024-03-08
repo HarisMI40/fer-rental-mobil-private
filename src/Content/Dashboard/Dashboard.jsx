@@ -5,7 +5,7 @@ import Listtable from "../../components/ListTable/Listtable";
 
 const Dashboard = () => {
   return (
-    <div className="content w-full bg-slate-100">
+    <div className="content w-full bg-slate-100 overflow-hidden">
       <Breadcrumb />
       <div className="chart-section ps-3 mt-10 text-black">
         <div className="card-text">
