@@ -9,6 +9,7 @@ const Listtable = () => {
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [accessToken, setAccessToken] = useState("");
+  const [forcedPage, setForcedPage] = useState(null);
 
   const PER_PAGE_OPTIONS = [5, 10, 15, 20]; // Options for rows per page
 
@@ -40,8 +41,8 @@ const Listtable = () => {
 
   const pageCount = Math.ceil(totalCount / rowsPerPage);
 
-  const handlePageChange = ({ selected }) => {
-    setCurrentPage(selected);
+  const handlePageChange = (selectedPageNumber) => {
+    setCurrentPage(selectedPageNumber);
   };
 
   const handleRowsPerPageChange = (e) => {
@@ -137,7 +138,8 @@ const Listtable = () => {
       </div>
       <div className="pagination-container">
         <div className="pagination-options">
-          <span>Rows per page:</span>
+          <span>Limit:</span>
+          <br />
           <select value={rowsPerPage} onChange={handleRowsPerPageChange}>
             {PER_PAGE_OPTIONS.map((option) => (
               <option key={option} value={option}>
@@ -191,7 +193,8 @@ const Listtable = () => {
                 pageNumber >= 1 &&
                 pageNumber <= pageCount
               ) {
-                setCurrentPage(pageNumber - 1);
+                setForcedPage(pageNumber - 1); // Zero-based index
+                handlePageChange(pageNumber - 1); // Zero-based index
               }
             }}
           >
@@ -201,9 +204,45 @@ const Listtable = () => {
 
         <ReactPaginate
           pageCount={pageCount}
-          onPageChange={handlePageChange}
+          onPageChange={(selectedPageNumber) => {
+            handlePageChange(selectedPageNumber.selected);
+            setForcedPage(null); // Reset forcedPage after page change
+          }}
+          forcePage={forcedPage !== null ? forcedPage : currentPage}
           containerClassName={"pagination"}
           activeClassName={"active"}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={1}
+          previousLabel={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={18}
+              height={18}
+              viewBox="0 0 15 15"
+            >
+              <path
+                fill="none"
+                stroke="#948989"
+                strokeLinecap="square"
+                d="m6.5 9.5l-2-2l2-2m3 4l-2-2l2-2"
+              ></path>
+            </svg>
+          }
+          nextLabel={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={18}
+              height={18}
+              viewBox="0 0 15 15"
+            >
+              <path
+                fill="none"
+                stroke="#948989"
+                strokeLinecap="square"
+                d="m8.5 9.5l2-2l-2-2m-3 4l2-2l-2-2"
+              ></path>
+            </svg>
+          }
         />
       </div>
     </div>

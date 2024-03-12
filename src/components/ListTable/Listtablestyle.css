@@ -1,14 +1,10 @@
 .container1 {
   justify-content: center;
   margin-left: 0;
-  /* position: absolute;
-  top: 50%;
-  left: 50%; */
   max-height: 85vh;
   overflow-y: scroll;
-  /* -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); */
 }
+
 table {
   width: 100%;
   height: 100%x;
@@ -17,24 +13,29 @@ table {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   color: black;
 }
+
 th,
 td {
   padding: 20px;
   background-color: #fff;
-  /* color: #fff; */
 }
+
 th {
   text-align: left;
 }
+
 thead th {
   background-color: #cfd4ed;
 }
+
 tbody tr:hover {
   background-color: rgb(11, 10, 10);
 }
+
 tbody td {
   position: relative;
 }
+
 tbody td:hover:before {
   content: "";
   position: absolute;
@@ -57,7 +58,7 @@ tbody td:hover:before {
 
 .pagination-options {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .pagination-options span {
@@ -82,36 +83,60 @@ tbody td:hover:before {
 .pagination {
   display: flex;
   justify-content: flex-end;
-  list-style: none;
+  margin-top: 20px;
+}
+
+.pagination ul {
+  display: flex;
   padding: 0;
 }
 
 .pagination li {
-  margin: 0px;
+  width: 38px;
+  height: 38px;
+  margin: 0 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
   cursor: pointer;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.pagination li a {
+  color: #333;
+  text-decoration: none;
 }
 
 .pagination li.active {
-  font-weight: bold;
   background-color: #cfd4ed;
+  color: black;
 }
 
-.pagination li:hover {
-  text-decoration: underline;
+.pagination li.active a {
+  background-color: #cfd4ed;
+  color: black;
+  border: none; /* Add this line */
+  padding: 8px 0; /* Add this line */
+  width: 100%; /* Add this line */
+  height: 100%; /* Add this line */
+  display: flex; /* Add this line */
+  justify-content: center; /* Add this line */
+  align-items: center; /* Add this line */
 }
 
 .pagination a {
   color: black;
   text-decoration: none;
   padding: 8px 10px;
-  border: 1px solid #ccc;
   height: fit-content;
   border-radius: 0px;
 }
 
-.pagination a:hover {
-  background-color: #f5f5f5;
-}
 .jump-to-page-input-wrapper {
   display: inline-block;
   position: relative;
