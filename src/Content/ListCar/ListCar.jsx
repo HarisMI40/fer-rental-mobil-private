@@ -16,13 +16,8 @@ const CarList = () => {
           </div>
         </div>
         <CategoryButton />
-        <div className="card-list flex flex-wrap gap-4 shrink mb-12">
-          {Array(10)
-            .fill()
-            .map((car, index) => (
-              <Card key={index} />
-            ))}
-        </div>
+
+        <Card />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
 import ReactPaginate from "react-paginate";
 import "./Listtablestyle.css";
@@ -8,8 +8,8 @@ const Listtable = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10); // Number of items per page initially
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
-  const [accessToken, setAccessToken] = useState("");
   const [forcedPage, setForcedPage] = useState(null);
+
 
   const PER_PAGE_OPTIONS = [5, 10, 15, 20]; // Options for rows per page
 
@@ -37,7 +37,7 @@ const Listtable = () => {
     };
 
     fetchData();
-  }, [currentPage, rowsPerPage, accessToken]);
+  }, [currentPage, rowsPerPage]);
 
   const pageCount = Math.ceil(totalCount / rowsPerPage);
 
