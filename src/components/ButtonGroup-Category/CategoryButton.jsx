@@ -1,3 +1,6 @@
+import { useDispatch } from "react-redux";
+import { updateCategory } from "../../Redux/carSlice";
+
 const catItem = [
   {
     name: "All",
@@ -18,6 +21,8 @@ const catItem = [
 ];
 
 const CategoryButton = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="category-sort flex py-2 gap-4 mb-7">
       {catItem.map((item, index) => (
@@ -29,6 +34,7 @@ const CategoryButton = () => {
             defaultChecked={item.value === ""}
             value={item.value}
             className="peer hidden"
+            onChange={(e) => dispatch(updateCategory(e.target.value))}
           />
           <label
             htmlFor={index}
