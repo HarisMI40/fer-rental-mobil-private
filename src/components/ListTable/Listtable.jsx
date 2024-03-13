@@ -2,42 +2,49 @@ import { useMemo, useState, useEffect } from "react";
 import { useTable, useSortBy } from "react-table";
 import ReactPaginate from "react-paginate";
 import "./Listtablestyle.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchOrders } from "../../Redux/orderSlice";
 
 const Listtable = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10); // Number of items per page initially
-  const [data, setData] = useState([]);
-  const [totalCount, setTotalCount] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [forcedPage, setForcedPage] = useState(null);
+  const dispatch = useDispatch();
+  const { orders, totalCount, isLoading, error } = useSelector(
+    (state) => state.orders
+  );
 
+  const PER_PAGE_OPTIONS = [5, 10, 15, 20]; 
 
-  const PER_PAGE_OPTIONS = [5, 10, 15, 20]; // Options for rows per page
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://api-car-rental.binaracademy.org/admin/v2/order?sort=user_email:asc&page=${
+  //           currentPage + 1
+  //         }&pageSize=${rowsPerPage}`,
+  //         {
+  //           headers: {
+  //             access_token:
+  //               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc",
+  //           },
+  //         }
+  //       );
+  //       const result = await response.json();
+  //       console.log("API Response:", result); // Log the API response
+  //       setData(result.orders);
+  //       setTotalCount(result.count);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://api-car-rental.binaracademy.org/admin/v2/order?sort=user_email:asc&page=${
-            currentPage + 1
-          }&pageSize=${rowsPerPage}`,
-          {
-            headers: {
-              access_token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc",
-            },
-          }
-        );
-        const result = await response.json();
-        console.log("API Response:", result); // Log the API response
-        setData(result.orders);
-        setTotalCount(result.count);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  //   fetchData();
+  // }, [currentPage, rowsPerPage]);
 
-    fetchData();
-  }, [currentPage, rowsPerPage]);
+  useEffect(()=>{
+    dispatch(fetchOrders({currentPage,setRowsPerPage,rowsPerPage}));
+  },[currentPage, rowsPerPage, dispatch])
 
   const pageCount = Math.ceil(totalCount / rowsPerPage);
 
@@ -87,10 +94,16 @@ const Listtable = () => {
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data }, useSortBy);
+  useTable({ columns, data: orders }, useSortBy);
 
   return (
     <div>
+       {isLoading ? (
+        <p>Loading orders...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : (
+      <>
       <div className="container1">
         <table {...getTableProps()}>
           <thead>
@@ -245,6 +258,8 @@ const Listtable = () => {
           }
         />
       </div>
+      </>
+      )}
     </div>
   );
 };
