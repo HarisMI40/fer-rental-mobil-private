@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
 const URL = "https://api-car-rental.binaracademy.org";
@@ -15,6 +15,18 @@ export const fetchCar = createAsyncThunk("fetchCar", async (params) => {
   return response.data.cars;
 });
 
+//
+export const addCar = createAsyncThunk("addCar", async (params) => {
+  const response = await axios.post(`${URL}/admin/car`, {
+    headers: {
+      access_token: token,
+    },
+    params,
+  });
+  return response.data.cars;
+});
+
+// nilai awal
 const initialState = {
   carList: [],
   params: {},
@@ -27,13 +39,21 @@ const carSlice = createSlice({
     updateCategory: (state, action) => {
       state.params.category = action.payload;
     },
+
+    // set state
+    // inputCar:
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCar.fulfilled, (state, action) => {
       state.carList = action.payload;
     });
+
+    // bikin addcar
+    builder.addCase(addCar.fulfilled, (state, action) => {
+      state.carList = action.payload;
+    });
   },
 });
 
-export const { updateCategory } = carSlice.actions;
+export const {updateCategory} = carSlice.actions;
 export default carSlice.reducer;
