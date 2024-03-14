@@ -94,10 +94,7 @@ const Listtable = () => {
         Header: "Price",
         accessor: "total_price",
       },
-      {
-        Header: "Category",
-        accessor: "Category",
-      },
+    
     ],
     [currentPage, rowsPerPage]
   );
@@ -161,9 +158,9 @@ const Listtable = () => {
       <div className="pagination-container">
         <div className="pagination-options flex gap-4">
           <div className="limit">
-          <span>Limit:</span>
+          <span className="text-black">Limit:</span>
           <br />
-          <select value={rowsPerPage} onChange={handleRowsPerPageChange}>
+          <select className="text-black" value={rowsPerPage} onChange={handleRowsPerPageChange}>
             {PER_PAGE_OPTIONS.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -175,13 +172,13 @@ const Listtable = () => {
           <div className="jump-to-page-container">
 
           <div className="jump-to-page-wrapper">
-          <span>Jump to page:</span>
+          <span className="text-black">Jump to page:</span>
           <div className="jump-to-page-input-wrapper flex items-center relative">
           
             <input
               type="text"
               id="jump-to-page-input"
-              className="jump-to-page-input"
+              className="jump-to-page-input text-black"
               placeholder="Enter"
               onChange={(e) => {
                 const value = e.target.value.replace(/\D/g, ""); // Allow only digits

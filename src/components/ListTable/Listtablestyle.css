@@ -35,6 +35,7 @@ tbody tr:hover {
 }
 
 
+
 tbody td:hover:before {
   content: "";
   position: absolute;
@@ -118,13 +119,13 @@ tbody td:hover:before {
 .pagination li.active a {
   background-color: #cfd4ed;
   color: black;
-  border: none; 
-  padding: 8px 0;
-  width: 100%; 
-  height: 100%; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  border: none; /* Add this line */
+  padding: 8px 0; /* Add this line */
+  width: 100%; /* Add this line */
+  height: 100%; /* Add this line */
+  display: flex; /* Add this line */
+  justify-content: center; /* Add this line */
+  align-items: center; /* Add this line */
 }
 
 .pagination a {
@@ -152,6 +153,17 @@ tbody td:hover:before {
   border-radius: 1px;
   width: 80px;
 }
+
+/* .increment-button {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+} */
 
 .jump-to-page-button {
   padding: 5px 10px;
