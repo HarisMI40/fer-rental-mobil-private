@@ -24,16 +24,26 @@ const carSlice = createSlice({
   name: "car",
   initialState,
   reducers: {
-    updateCategory: (state, action) => {
+    // menampilkan list car berdasarkan category
+    filterCategory: (state, action) => {
       state.params.category = action.payload;
+    },
+    // menampilkan list car berdasarkan pencarian nama mobil
+    filterName: (state, action) => {
+      state.params.name = action.payload;
+    },
+    // menghilangkan riwayat filter sebelumnya
+    resetFilter: (state) => {
+      state.params = {};
     },
   },
   extraReducers: (builder) => {
+    // Menampilkan keseluruhan data car
     builder.addCase(fetchCar.fulfilled, (state, action) => {
       state.carList = action.payload;
     });
   },
 });
 
-export const { updateCategory } = carSlice.actions;
+export const { filterCategory, filterName, resetFilter } = carSlice.actions;
 export default carSlice.reducer;

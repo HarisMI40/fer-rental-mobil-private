@@ -10,7 +10,6 @@ const Listtable = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [forcedPage, setForcedPage] = useState(null);
 
-
   const PER_PAGE_OPTIONS = [5, 10, 15, 20]; // Options for rows per page
 
   useEffect(() => {
@@ -91,7 +90,7 @@ const Listtable = () => {
 
   return (
     <div>
-      <div className="container1">
+      <div className="container1 overscroll-none">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
