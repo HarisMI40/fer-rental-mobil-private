@@ -5,6 +5,12 @@ import "./Listtablestyle.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders } from "../../Redux/orderSlice";
 import debounce from 'lodash/debounce';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 
 const Listtable = () => {
@@ -84,18 +90,28 @@ const Listtable = () => {
       },
       {
         Header: "Start Rent",
-        accessor: "start_rent_at",
+        accessor: (row) =>
+          dayjs
+            .tz(row.start_rent_at, "Asia/Jakarta")
+            .format("DD MMM YYYY HH:mm:ss"),
       },
       {
         Header: "Finish Rent",
-        accessor: "finish_rent_at",
+        accessor: (row) =>
+          dayjs
+            .tz(row.finish_rent_at, "Asia/Jakarta")
+            .format("DD MMM YYYY HH:mm:ss"),
       },
       {
         Header: "Price",
-        accessor: "total_price",
-      },
-    
+        accessor: (row) =>
+          new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR",
+          }).format(row.total_price),
+        }
     ],
+    
     [currentPage, rowsPerPage]
   );
 
