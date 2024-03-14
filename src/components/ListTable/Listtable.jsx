@@ -1,9 +1,11 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { useTable, useSortBy } from "react-table";
 import ReactPaginate from "react-paginate";
 import "./Listtablestyle.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders } from "../../Redux/orderSlice";
+import debounce from 'lodash/debounce';
+
 
 const Listtable = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -14,7 +16,14 @@ const Listtable = () => {
     (state) => state.orders
   );
 
-  const PER_PAGE_OPTIONS = [5, 10, 15, 20]; 
+  const debouncedFetchOrders = useCallback(
+    debounce(({ currentPage, rowsPerPage }) => {
+      dispatch(fetchOrders({ currentPage, rowsPerPage }));
+    }, 200), 
+    [dispatch]
+  );
+
+  const PER_PAGE_OPTIONS = [10, 20, 50, 100]; 
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -42,9 +51,9 @@ const Listtable = () => {
   //   fetchData();
   // }, [currentPage, rowsPerPage]);
 
-  useEffect(()=>{
-    dispatch(fetchOrders({currentPage,setRowsPerPage,rowsPerPage}));
-  },[currentPage, rowsPerPage, dispatch])
+  useEffect(() => {
+    debouncedFetchOrders({ currentPage, rowsPerPage });
+  }, [currentPage, rowsPerPage, debouncedFetchOrders]);
 
   const pageCount = Math.ceil(totalCount / rowsPerPage);
 
@@ -150,7 +159,8 @@ const Listtable = () => {
         </table>
       </div>
       <div className="pagination-container">
-        <div className="pagination-options">
+        <div className="pagination-options flex gap-4">
+          <div className="limit">
           <span>Limit:</span>
           <br />
           <select value={rowsPerPage} onChange={handleRowsPerPageChange}>
@@ -160,8 +170,14 @@ const Listtable = () => {
               </option>
             ))}
           </select>
+          </div>
+
+          <div className="jump-to-page-container">
+
+          <div className="jump-to-page-wrapper">
           <span>Jump to page:</span>
-          <div className="jump-to-page-input-wrapper">
+          <div className="jump-to-page-input-wrapper flex items-center relative">
+          
             <input
               type="text"
               id="jump-to-page-input"
@@ -173,7 +189,7 @@ const Listtable = () => {
               }}
             />
             <button
-              className="increment-button"
+              className="increment-button absolute top-1 left-10"
               onClick={() => {
                 const input = document.getElementById("jump-to-page-input");
                 input.value = parseInt(input.value || "0", 10) + 1;
@@ -193,9 +209,10 @@ const Listtable = () => {
                 ></path>
               </svg>
             </button>
-          </div>
-          <button
-            className="jump-to-page-button"
+           
+
+            <button
+            className="jump-to-page-button w-11 h-9 self-center"
             onClick={() => {
               const pageNumber = parseInt(
                 document.getElementById("jump-to-page-input").value,
@@ -213,6 +230,10 @@ const Listtable = () => {
           >
             Go
           </button>
+          </div>
+          </div>
+          </div>
+          
         </div>
 
         <ReactPaginate
