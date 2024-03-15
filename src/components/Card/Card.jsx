@@ -9,9 +9,9 @@ import { fetchCar } from "../../Redux/carSlice";
 import dayjs from "dayjs";
 
 const categoryMap = {
-  small: "2-4 orang",
-  medium: "4-8 orang",
-  large: "> 8 orang",
+  small: "2 - 4 orang",
+  medium: "4 - 6 orang",
+  large: "6 - 8 orang",
 };
 const PLACEHOLDER_URL = "https://fakeimg.pl/270x160";
 const Card = () => {
@@ -33,9 +33,9 @@ const Card = () => {
             <div className="img-card flex justify-center p-4">
               <img
                 src={car.image || PLACEHOLDER_URL}
-                alt="product1"
-                width={270}
-                height={160}
+                alt={car.name}
+                loading="lazy"
+                className=" w-[270px] h-[160px]"
               />
             </div>
             <div className="card-detail mb-6 space-y-2">
@@ -50,7 +50,7 @@ const Card = () => {
               <div className="posted flex items-center gap-2">
                 <FiClock />
                 <span className="text-black text-sm">
-                  Updated at {dayjs(car.updatedAt).format("DD MMM YYYY, HH:mm")}
+                  Updated at {dayjs(car.updatedAt).format("DD MMM YYYY, HH.mm")}
                 </span>
               </div>
             </div>

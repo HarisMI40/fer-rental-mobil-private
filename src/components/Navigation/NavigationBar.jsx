@@ -1,9 +1,23 @@
 import { FiChevronDown, FiSearch } from "react-icons/fi";
 import { useState } from "react";
 import "./navigation.css";
+import { useDispatch } from "react-redux";
+import { filterName, resetFilter } from "../../Redux/carSlice";
+import { useNavigate } from "react-router-dom";
 
 const NavigationBar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [hidden, setHidden] = useState(true);
+  const [name, setName] = useState("");
+  const handleClick = (name) => {
+    if (name) {
+      dispatch(filterName(name));
+      navigate("/cars");
+    } else {
+      dispatch(resetFilter());
+    }
+  };
   return (
     <nav className="nav-menu fixed top-0 w-full bg-white border-b border-gray-20">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -21,10 +35,13 @@ const NavigationBar = () => {
                     type="search"
                     name="search"
                     placeholder="Search"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <button
                   type="submit"
+                  onClick={() => handleClick(name)}
                   className=" bg-white rounded-sm ring-1 ring-blue-800  px-2 py-0 text-blue-800 font-medium hover:bg-blue-800 hover:text-white"
                 >
                   Search
