@@ -5,15 +5,16 @@ import "./Listtablestyle.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOrders } from "../../Redux/orderSlice";
 import debounce from "lodash/debounce";
+import { formatDate } from "../../helper/formatDate";
+import { formatCurrency } from "../../helper/formatCurrency";
 
 const Listtable = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [forcedPage, setForcedPage] = useState(null);
+  const [isDataFetching, setIsDataFetching] = useState(false);
   const dispatch = useDispatch();
-  const { orders, totalCount, isLoading, error } = useSelector(
-    (state) => state.orders
-  );
+  const { orders, totalCount, error } = useSelector((state) => state.orders);
 
   const debouncedFetchOrders = useCallback(
     debounce(({ currentPage, rowsPerPage }) => {
@@ -54,6 +55,14 @@ const Listtable = () => {
     debouncedFetchOrders({ currentPage, rowsPerPage });
   }, [currentPage, rowsPerPage, debouncedFetchOrders]);
 
+  useEffect(() => {
+    setIsDataFetching(true); //  Set isFetching ke true sebelum fetching data biar ga kedap kedip
+
+    debouncedFetchOrders({ currentPage, rowsPerPage });
+
+    setIsDataFetching(false); // Set isFetching ke false abis fetching data biar ga kedap kedip
+  }, [currentPage, rowsPerPage, debouncedFetchOrders]);
+
   const pageCount = Math.ceil(totalCount / rowsPerPage);
 
   const handlePageChange = (selectedPageNumber) => {
@@ -62,7 +71,7 @@ const Listtable = () => {
 
   const handleRowsPerPageChange = (e) => {
     setRowsPerPage(parseInt(e.target.value, 10));
-    setCurrentPage(0); // Reset to the first page when changing rows per page
+    setCurrentPage(0); // Reset ke first page abis jump ke page lainnya
   };
 
   const columns = useMemo(
@@ -83,19 +92,15 @@ const Listtable = () => {
       },
       {
         Header: "Start Rent",
-        accessor: "start_rent_at",
+        accessor: (row) => formatDate(row.start_rent_at),
       },
       {
         Header: "Finish Rent",
-        accessor: "finish_rent_at",
+        accessor: (row) => formatDate(row.finish_rent_at),
       },
       {
         Header: "Price",
-        accessor: "total_price",
-      },
-      {
-        Header: "Category",
-        accessor: "Category",
+        accessor: (row) => formatCurrency(row.total_price),
       },
     ],
     [currentPage, rowsPerPage]
@@ -106,7 +111,7 @@ const Listtable = () => {
 
   return (
     <div>
-      {isLoading ? (
+      {isDataFetching ? (
         <p>Loading orders...</p>
       ) : error ? (
         <p>Error: {error}</p>
@@ -184,7 +189,7 @@ const Listtable = () => {
                       className="jump-to-page-input"
                       placeholder="Enter"
                       onChange={(e) => {
-                        const value = e.target.value.replace(/\D/g, ""); // Allow only digits
+                        const value = e.target.value.replace(/\D/g, ""); // digit doang
                         e.target.value = value;
                       }}
                     />
