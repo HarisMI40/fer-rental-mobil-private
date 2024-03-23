@@ -4,7 +4,7 @@ import "./Inputdata.css";
 import iconfoto from "../../../src/assets/img/inputimage/fi_upload.png";
 import {useNavigate} from "react-router-dom";
 
-const Inputdata = () => {
+const Editdata = () => {
   const navigate = useNavigate();
 
   // buat simpan file
@@ -148,4 +148,4 @@ const Inputdata = () => {
   );
 };
 
-export default Inputdata;
+export default Editdata;

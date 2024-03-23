@@ -1,7 +1,7 @@
 // import ListCar from "../Content/ListCar/ListCar";
 import NavigationBar from "../components/Navigation/NavigationBar";
 import SideBarMenu from "../components/SideBarMenu/SideBarMenu";
-import AddCars from "../Content/AddCar/AddCar";
+import AddCars from "../Content/AddCar/AddCars";
 
 const Addcars = () => {
   return (

@@ -15,7 +15,7 @@ export const fetchCar = createAsyncThunk("fetchCar", async (params) => {
   return response.data.cars;
 });
 
-//
+//1 pertama tambah asyncthunk
 export const addCar = createAsyncThunk("addCar", async (params) => {
   const response = await axios.post(`${URL}/admin/car`, {
     headers: {
@@ -42,6 +42,9 @@ const carSlice = createSlice({
 
     // set state
     // inputCar:
+    tambahMobil: (state, action) => {
+      state.dataCar = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCar.fulfilled, (state, action) => {

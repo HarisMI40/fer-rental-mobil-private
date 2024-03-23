@@ -1,7 +1,8 @@
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-import { FiPlus } from "react-icons/fi";
+import {FiPlus} from "react-icons/fi";
 import Card from "../../components/Card/Card";
 import CategoryButton from "../../components/ButtonGroup-Category/CategoryButton";
+import {Link} from "react-router-dom";
 
 const CarList = () => {
   return (
@@ -10,10 +11,13 @@ const CarList = () => {
       <div className="cars-section mt-10">
         <div className="title-card flex justify-between mb-8 items-center">
           <h1 className="text-black font-bold text-xl">List Car</h1>
-          <div className="btn rounded-sm bg-blue-800 border-0 text-white hover:bg-white hover:text-blue-800 hover:ring-2 ring-blue-800">
-            <FiPlus size={18} strokeWidth={3} />
-            Add New Car
-          </div>
+
+          <Link to="/addcars">
+            <div className="btn rounded-sm bg-blue-800 border-0 text-white hover:bg-white hover:text-blue-800 hover:ring-2 ring-blue-800">
+              <FiPlus size={18} strokeWidth={3} />
+              Add New Car
+            </div>
+          </Link>
         </div>
         <CategoryButton />
 

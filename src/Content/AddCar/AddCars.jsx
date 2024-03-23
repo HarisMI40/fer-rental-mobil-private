@@ -1,47 +1,14 @@
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 // import EditCars from "../../components/Inputdata/Editdata";
-import "./editcar.css";
+import "./addcar.css";
 import Inputfield from "../../components/Inputdata/Inputfield";
 import Fotoinput from "../../components/Inputdata/Fotoinput";
 import Selectinput from "../../components/Inputdata/Selectinput";
 
 import axios from "axios";
-import {useEffect, useState} from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
-
-const EditCar = () => {
-  //untuk ambil nilai ID dari link menggunakan params
-  const params = useParams();
-
-  // untuk link
-  const navigate = useNavigate();
-
-  // get data mobil
-  // const [dataMobil, setDataMobil] = useState({});
-  useEffect(() => {
-    async function getData() {
-      // const {idOrder} = JSON.parse(localStorage.getItem("dataOrder"));
-      const response = await axios.get(
-        `https://api-car-rental.binaracademy.org/admin/car/${params.id}`,
-        {
-          headers: {
-            access_token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcxMTAzODM2MH0.yv1tFeGtGeJKpJmIL1z-hZTnbLlfXyKQEKwFKqXPqy0",
-          },
-        }
-      );
-      const data = response.data;
-      setValues({
-        name: data.name,
-        harga: data.price,
-        file: data.image,
-        kategori: data.category,
-      });
-      console.log(response.data);
-    }
-    getData();
-  }, [params.id]);
-
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+const AddCars = () => {
   // nilai kosong untuk ngambil data componen
   const [values, setValues] = useState({
     name: "",
@@ -50,11 +17,7 @@ const EditCar = () => {
     kategori: "",
   });
 
-  const categoryMaps = {
-    small: "small",
-    medium: "medium",
-    large: "large",
-  };
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     // ini untuk handle biar gak redirect link
@@ -70,8 +33,8 @@ const EditCar = () => {
       formData.append("price", values.harga);
       // formData.append("status", "false");
       formData.append("image", values.file[0]);
-      const response = await axios.put(
-        `https://api-car-rental.binaracademy.org/admin/car/${params.id}`,
+      const response = await axios.post(
+        "https://api-car-rental.binaracademy.org/admin/car",
         formData,
         {
           headers: {
@@ -94,7 +57,6 @@ const EditCar = () => {
       <Breadcrumb />
       <div className="cars-section mt-10">
         <h1 className="text-black font-bold text-xl mb-4">Edit Car</h1>
-
         {/*  isi content  */}
         {/* <EditCars /> */}
 
@@ -102,7 +64,7 @@ const EditCar = () => {
           <div className="bg_putih gap-16px">
             <Inputfield
               label="Nama / Tipe Mobil*"
-              value={values.name}
+              // value={values.name}
               // onchange -> apabila variabel berubah
               onChange={(e) => {
                 console.log({...values, name: e.target.value});
@@ -117,7 +79,6 @@ const EditCar = () => {
 
             <Inputfield
               label="Harga*"
-              value={values.harga}
               onChange={(e) => {
                 console.log({...values, harga: e.target.value});
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
@@ -142,10 +103,6 @@ const EditCar = () => {
 
             <Selectinput
               label="Kategori*"
-              // defaultValue={values.kategori}
-
-              value={values.kategori}
-              // defaultValue={values.kategori}
               onChange={(e) => {
                 console.log({...values, kategori: e.target.value});
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
@@ -158,16 +115,14 @@ const EditCar = () => {
             />
           </div>
 
-          <Link to="/cars">
-            <button className="cancel_button bg-white" type="button">
-              Cancel
-            </button>
-          </Link>
+          <button className="cancel_button bg-white" type="button">
+            Cancel
+          </button>
 
           <input
             className="save_button bg-blue-900"
             type="submit"
-            value="Edit"
+            value="Save"
           />
         </form>
       </div>
@@ -175,4 +130,4 @@ const EditCar = () => {
   );
 };
 
-export default EditCar;
+export default AddCars;

@@ -8,13 +8,26 @@
   margin-bottom: 280px;
 }
 
-.boxs {
-  background-color: white;
-  width: 1100px;
-  height: 318px;
-  padding-left: 16px;
-  padding-top: 16px;
-  padding-bottom: 16px;
+input[type="file"] {
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  width: 339px;
+  height: 36px;
+}
+
+input[type="text"] {
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  width: 339px;
+  height: 36px;
 }
 
 .text_div {
@@ -33,22 +46,6 @@
   height: 36px;
 
   /* padding-top: 50px; */
-}
-
-.inputan {
-  border: 1px solid rgba(208, 208, 208, 1);
-  width: 339px;
-  height: 36px;
-  border-radius: 2px;
-  /* padding-top: 9px; */
-  padding-left: 12px;
-
-  font-family: Rubik;
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: left;
 }
 
 .cancel_button {
@@ -84,4 +81,79 @@
   width: 57px;
   height: 36px;
   border-radius: 2px;
+}
+
+.inputan {
+  border: 1px solid rgba(208, 208, 208, 1);
+  width: 339px;
+  height: 36px;
+  border-radius: 2px;
+  /* padding-top: 9px; */
+  padding-left: 12px;
+
+  font-family: Rubik;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+/* button custom */
+
+.uploadinputan {
+  width: 339px;
+  height: 36px;
+}
+
+.fileUploadInput {
+  display: grid;
+
+  position: relative;
+  z-index: 1;
+}
+
+.fileUploadInput input {
+  z-index: 1;
+  padding: 0 gap(m);
+  border: 1px solid rgba(208, 208, 208, 1);
+  width: 339px;
+  height: 36px;
+  border-radius: 2px;
+}
+.fileUploadInput input[type="file"] {
+  padding: 0 gap(m);
+}
+
+.fileUploadInput input[type="file"]::-webkit-file-upload-button {
+  /* visibility: hidden; */
+  /* margin-left: 1px; */
+
+  padding: 0px;
+  height: 32px;
+  width: 10px;
+
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.fileUploadInput button {
+  width: 30px;
+  height: 36px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  line-height: 0;
+  user-select: none;
+  color: white;
+  background-color: white;
+  border-radius: 0 3px 3px 0;
+  font-family: arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
 }

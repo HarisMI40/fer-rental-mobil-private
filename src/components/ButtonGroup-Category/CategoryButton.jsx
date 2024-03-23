@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import { updateCategory } from "../../Redux/carSlice";
+import {useDispatch} from "react-redux";
+import {updateCategory} from "../../Redux/carSlice";
 
 const catItem = [
   {
