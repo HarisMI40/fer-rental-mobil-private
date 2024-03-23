@@ -1,0 +1,125 @@
+.containerLogin {
+  overflow: hidden;
+}
+
+.imgLogin {
+  margin-left: -250px;
+}
+
+.adminForm {
+  margin: 45% auto;
+  padding: 0 50px;
+}
+
+.headingFormAdmin {
+  margin: auto;
+  font-family: Arial;
+  font-size: 700;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.notifError {
+  padding: 12px 25px;
+  background: rgba(208, 12, 26, 0.1);
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  color: #d00c1a;
+}
+
+.toSignInCustomer {
+  cursor: pointer;
+}
+
+.toSignInCustomer:hover {
+  color: #0d28a6;
+}
+
+/* .labelEmail,
+.labelPassword {
+  font-family: "Arial, sans-serif";
+  font-size: "0.875rem";
+  line-height: "1.4286";
+}
+
+.inputEmail,
+.inputPassword {
+  font-family: "Arial, sans-serif";
+  font-size: "0.75rem";
+  line-height: 1.5;
+  padding: "10px 15px";
+} */
+
+.btnSubmitAdmin {
+  border-radius: 2px;
+  background: #0d28a6;
+  margin-top: 2rem;
+}
+
+.btnSubmitAdmin:hover {
+  background: #0d30cb;
+}
+
+@media (max-width: 500px) {
+  .imgLogin {
+    display: none;
+  }
+  .formMobile {
+    width: 100%;
+  }
+  .adminForm {
+    padding: 0 10px;
+    margin: 10% auto;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 576px) {
+  .imgLogin {
+    display: none;
+  }
+  .formMobile {
+    width: 100%;
+  }
+  .adminForm {
+    padding: 0 80px;
+    margin: 10% auto;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 992px) {
+  .imgLogin {
+    display: none;
+  }
+
+  .formMobile {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .adminForm {
+    padding: 0 50px;
+    margin: 10% auto;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1025px) {
+  .imgLogin {
+    margin-left: -500px;
+  }
+  .formMobileNest {
+    margin-left: 30px;
+  }
+}
+
+@media (min-width: 1026px) and (max-width: 1281px) {
+  .imgLogin {
+    margin-left: -300px;
+  }
+  .formMobileNest {
+    margin-left: 30px;
+  }
+}
