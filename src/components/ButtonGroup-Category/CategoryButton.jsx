@@ -1,5 +1,7 @@
-import {useDispatch} from "react-redux";
-import {updateCategory} from "../../Redux/carSlice";
+
+import { useDispatch } from "react-redux";
+import { filterCategory, resetFilter } from "../../Redux/carSlice";
+
 
 const catItem = [
   {
@@ -34,7 +36,10 @@ const CategoryButton = () => {
             defaultChecked={item.value === ""}
             value={item.value}
             className="peer hidden"
-            onChange={(e) => dispatch(updateCategory(e.target.value))}
+            onChange={(e) => {
+              dispatch(resetFilter());
+              dispatch(filterCategory(e.target.value));
+            }}
           />
           <label
             htmlFor={index}

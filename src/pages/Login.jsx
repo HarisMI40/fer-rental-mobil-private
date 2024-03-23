@@ -1,92 +1,112 @@
 import { useState } from "react";
+import { loginAdmin } from "../Redux/admin-slice";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import logoLogin from "../assets/Logo-login.svg";
+import carBackground from "../assets/background-admin.png";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailAdmin, setEmailAdmin] = useState("");
+  const [passwordAdmin, setPasswordAdmin] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const auth = () => {
-    if (email === "admin@gmail.com" && password === "admin") {
-      navigate(`/Dashboard`);
-    } else {
-      alert("data yang anda masukkan salah");
-      return;
-    }
+  const handleEmailAdmin = (e) => {
+    setEmailAdmin(e.target.value);
   };
+
+  const handlePasswordAdmin = (e) => {
+    setPasswordAdmin(e.target.value);
+  };
+
+  const handleAdminLogin = (e) => {
+    e.preventDefault();
+    dispatch(loginAdmin({ email: emailAdmin, password: passwordAdmin }))
+      .unwrap()
+      .then((resolve) => {
+        console.log(resolve);
+        if (resolve) {
+          navigate("/");
+        }
+        // setTimeout(() => {
+        //   setShowToast(true);
+        // }, 1000);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 800);
+      })
+      .catch((error) => {
+        setTimeout(() => {
+          setIsError(true);
+        }, 1500);
+      });
+  };
+
   return (
-    <div className="flex flex-col justify-center px-6 py-12 lg:px-8 h-screen">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Sign in to your account
-        </h2>
-      </div>
-
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Email address
-            </label>
-            <div className="mt-2">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                value={email}
-                required
-                onChange={(e) => setEmail(e.target.value)}
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+    <>
+      {showToast && (
+        <ToastContainer className="p-3" position="top-center">
+          <Toast className="d-inline-block m-1" bg="success" onClose={() => setShowToast(false)} delay={3000}>
+            <ToastHeader>
+              <strong className="me-auto text-dark">Message</strong>
+              <small className="text-dark">now</small>
+            </ToastHeader>
+            <ToastBody className="text-white fw-bold">Login Successful !</ToastBody>
+          </Toast>
+        </ToastContainer>
+      )}
+      <div className="grid grid-cols-12 bg-white">
+        <div className="col-span-8">
+          <img className="object-cover h-screen" src={carBackground} alt="background-admin" />
+        </div>
+        <div className="col-span-4 px-4 py-8 lg:py-24">
+          <div className="max-w-md mx-auto bg-white rounded-lg p-8">
+            <div className="text-center">
+              <img src={logoLogin} alt="Sign-In-Admin-BCR" />
+              <h1 className="font-bold mt-5 text-2xl" data-testid="title-Login">
+                Welcome, Admin BCR
+              </h1>
+              {isError && <div className="text-red-600">Masukkan username dan password yang benar. Perhatikan penggunaan huruf kapital.</div>}
             </div>
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot password?
-                </a>
+            <form onSubmit={handleAdminLogin} className="mt-8">
+              <div className="mt-4">
+                <label htmlFor="email" className="block">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  onChange={handleEmailAdmin}
+                  placeholder="Contoh: kingemyu@gmail.co.uk"
+                  className="block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  required
+                />
               </div>
-            </div>
-            <div className="mt-2">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
+              <div className="mt-4">
+                <label htmlFor="password" className="block">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  onChange={handlePasswordAdmin}
+                  minLength="6"
+                  placeholder="6+ character"
+                  className="block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  required
+                />
+              </div>
+              <button type="submit" className="w-full px-4 py-2 mt-6 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+                Sign In
+              </button>
+            </form>
           </div>
-
-          <div>
-            <button
-              type="submit"
-              onClick={auth}
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Sign in
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -32,21 +32,6 @@ tbody tr:hover {
   background-color: rgb(11, 10, 10);
 }
 
-tbody td {
-  position: relative;
-}
-
-tbody td:hover:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -9999px;
-  bottom: -9999px;
-  background-color: rgba(255, 255, 255, 0.2);
-  z-index: -1;
-}
-
 .pagination-container {
   position: relative;
   display: flex;
@@ -73,7 +58,7 @@ tbody td:hover:before {
 }
 
 .pagination-options select {
-  width: 70px;
+  width: 75px;
 }
 
 .pagination-options input {
@@ -146,14 +131,10 @@ tbody td:hover:before {
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 1px;
-  width: 80px;
+  width: 100px;
 }
 
 .increment-button {
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  transform: translateY(-50%);
   background: none;
   border: none;
   font-size: 12px;
