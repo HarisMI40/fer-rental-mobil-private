@@ -50,12 +50,6 @@ const EditCar = () => {
     kategori: "",
   });
 
-  const categoryMaps = {
-    small: "small",
-    medium: "medium",
-    large: "large",
-  };
-
   const handleSubmit = async (e) => {
     // ini untuk handle biar gak redirect link
     e.preventDefault();
@@ -147,7 +141,7 @@ const EditCar = () => {
               value={values.kategori}
               // defaultValue={values.kategori}
               onChange={(e) => {
-                console.log({...values, kategori: e.target.value});
+                // console.log({...values, kategori: e.target.value});
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
                 setValues({...values, kategori: e.target.value});
               }}
