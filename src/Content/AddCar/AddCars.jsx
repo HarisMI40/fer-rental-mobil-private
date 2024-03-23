@@ -1,4 +1,3 @@
-import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 // import EditCars from "../../components/Inputdata/Editdata";
 import "./addcar.css";
 import Inputfield from "../../components/Inputdata/Inputfield";
@@ -6,8 +5,9 @@ import Fotoinput from "../../components/Inputdata/Fotoinput";
 import Selectinput from "../../components/Inputdata/Selectinput";
 
 import axios from "axios";
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FiChevronRight } from "react-icons/fi";
 const AddCars = () => {
   // nilai kosong untuk ngambil data componen
   const [values, setValues] = useState({
@@ -54,7 +54,37 @@ const AddCars = () => {
 
   return (
     <div className="content w-full min-h-screen bg-slate-100">
-      <Breadcrumb />
+      <nav className="flex" aria-label="Breadcrumb">
+        <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+          <li className="inline-flex items-center">
+            <a
+              href="/cars"
+              className="inline-flex items-center  font-bold text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+            >
+              Cars
+            </a>
+          </li>
+          <li>
+            <div className="flex items-center">
+              <FiChevronRight color="black" />
+              <a
+                href="/cars"
+                className="ms-1  font-bold text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"
+              >
+                List Cars
+              </a>
+            </div>
+          </li>
+          <li aria-current="page">
+            <div className="flex items-center">
+              <FiChevronRight color="black" />
+              <span className="ms-1  font-medium text-gray-500 md:ms-2 dark:text-gray-400">
+                Add New Car
+              </span>
+            </div>
+          </li>
+        </ol>
+      </nav>
       <div className="cars-section mt-10">
         <h1 className="text-black font-bold text-xl mb-4">Edit Car</h1>
         {/*  isi content  */}
@@ -67,9 +97,9 @@ const AddCars = () => {
               // value={values.name}
               // onchange -> apabila variabel berubah
               onChange={(e) => {
-                console.log({...values, name: e.target.value});
+                console.log({ ...values, name: e.target.value });
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({...values, name: e.target.value});
+                setValues({ ...values, name: e.target.value });
               }}
               inputProps={{
                 type: "text",
@@ -80,20 +110,23 @@ const AddCars = () => {
             <Inputfield
               label="Harga*"
               onChange={(e) => {
-                console.log({...values, harga: e.target.value});
+                console.log({ ...values, harga: e.target.value });
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({...values, harga: e.target.value});
+                setValues({ ...values, harga: e.target.value });
               }}
-              inputProps={{type: "text", placeholder: "Input Harga Sewa Mobil"}}
+              inputProps={{
+                type: "text",
+                placeholder: "Input Harga Sewa Mobil",
+              }}
             />
             <Fotoinput
               label="Foto*"
               // value={values.file}
               // onchange -> apabila variabel berubah
               onChange={(e) => {
-                console.log({...values, file: e.target.files});
+                console.log({ ...values, file: e.target.files });
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({...values, file: e.target.files});
+                setValues({ ...values, file: e.target.files });
               }}
               inputProps={{
                 type: "file",
@@ -104,9 +137,9 @@ const AddCars = () => {
             <Selectinput
               label="Kategori*"
               onChange={(e) => {
-                console.log({...values, kategori: e.target.value});
+                console.log({ ...values, kategori: e.target.value });
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({...values, kategori: e.target.value});
+                setValues({ ...values, kategori: e.target.value });
               }}
               inputProps={{
                 type: "text",
@@ -115,7 +148,11 @@ const AddCars = () => {
             />
           </div>
 
-          <button className="cancel_button bg-white" type="button">
+          <button
+            className="cancel_button bg-white"
+            type="button"
+            onClick={navigate("/cars")}
+          >
             Cancel
           </button>
 

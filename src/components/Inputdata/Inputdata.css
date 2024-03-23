@@ -8,28 +8,6 @@
   margin-bottom: 280px;
 }
 
-input[type="file"] {
-  font-family: Arial;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: left;
-  width: 339px;
-  height: 36px;
-}
-
-input[type="text"] {
-  font-family: Arial;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: left;
-  width: 339px;
-  height: 36px;
-}
-
 .text_div {
   /* margin-top: 7px; */
   margin: center;

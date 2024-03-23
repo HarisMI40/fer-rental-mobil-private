@@ -1,8 +1,8 @@
 import axios from "axios";
-import {useState} from "react";
+import { useState } from "react";
 import "./Inputdata.css";
 import iconfoto from "../../../src/assets/img/inputimage/fi_upload.png";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Inputdata = () => {
   const navigate = useNavigate();
@@ -139,7 +139,11 @@ const Inputdata = () => {
           <div className="w-1/2 ">-</div>
         </div>
       </div>
-      <button className="cancel_button bg-white" type="button">
+      <button
+        className="cancel_button bg-white"
+        type="button"
+        onClick={navigate("/cars")}
+      >
         Cancel
       </button>
 

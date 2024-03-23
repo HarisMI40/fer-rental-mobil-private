@@ -6,15 +6,14 @@ const initialState = {
   isAdminAuthenticated: !!localStorage.getItem("token_Admin"),
 };
 
-const loginAdmin = createAsyncThunk("authentication/loginAdmin", async (payload) => {
-  try {
+const loginAdmin = createAsyncThunk(
+  "authentication/loginAdmin",
+  async (payload) => {
     const get = await axios.post(`${BASE_API}/admin/auth/login`, payload);
 
     return get.data;
-  } catch (error) {
-    throw error;
   }
-});
+);
 
 const authAdminSlice = createSlice({
   name: "authentication",
@@ -34,6 +33,7 @@ const authAdminSlice = createSlice({
       localStorage.setItem("token_Admin", action.payload.access_token);
       console.log(action);
       localStorage.setItem("role", action.payload.role);
+      localStorage.setItem("email", action.payload.email);
       authAdminSlice.caseReducers.login(state, {
         payload: !!action.payload,
         type: loginAdmin.typePrefix,

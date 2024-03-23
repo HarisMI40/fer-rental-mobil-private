@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import {FiUsers, FiClock, FiTrash, FiEdit} from "react-icons/fi";
+import { FiUsers, FiClock, FiTrash, FiEdit } from "react-icons/fi";
 import "./card.css";
-import {useEffect, useState} from "react";
-import {Modal} from "flowbite-react";
-import {useDispatch, useSelector} from "react-redux";
-import {formatCurrency} from "../../helper/formatCurrency";
-import {fetchCar} from "../../Redux/carSlice";
+import { useEffect, useState } from "react";
+import { Modal } from "flowbite-react";
+import { useDispatch, useSelector } from "react-redux";
+import { formatCurrency } from "../../helper/formatCurrency";
+import { fetchCar } from "../../Redux/carSlice";
 import dayjs from "dayjs";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const categoryMap = {
   small: "2 - 4 orang",
@@ -64,7 +64,7 @@ const Card = () => {
                 Delete
               </div>
               <Link
-                to={`editcars/${car.id}`}
+                to={`editcar/${car.id}`}
                 className="btn successCol w-1/3 grow text-white border-0 font-bold text-md rounded-sm "
               >
                 <FiEdit size={18} strokeWidth={3} />

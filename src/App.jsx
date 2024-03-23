@@ -45,12 +45,12 @@ function App() {
         {/* // tolong tambahkan autentifikasi pliss            */}
 
         <Route
-          path="/addcars"
+          path="cars/addcar"
           element={token ? <AddCars /> : <Navigate to="/login" replace />}
         />
 
         <Route
-          path="cars/editcars/:id"
+          path="cars/editcar/:id"
           element={token ? <EditCars /> : <Navigate to="/login" replace />}
         />
       </Routes>
