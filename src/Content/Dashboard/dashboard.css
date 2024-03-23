@@ -26,9 +26,14 @@
 .blue-btn {
   width: 43px;
   height: 36px;
-  background-color: #0d28a6;
+  margin-bottom: 20px;
+  background-color: #0d28a6 !important;
   color: #fff;
   border: none;
+}
+.blue-btn:hover{
+  background-color: #0d28a6!important;
+  opacity: 0.75;
 }
 canvas {
   min-width: 1150px !important;
