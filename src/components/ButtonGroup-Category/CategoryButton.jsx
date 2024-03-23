@@ -1,5 +1,7 @@
+
 import { useDispatch } from "react-redux";
 import { filterCategory, resetFilter } from "../../Redux/carSlice";
+
 
 const catItem = [
   {

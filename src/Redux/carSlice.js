@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 
 const URL = "https://api-car-rental.binaracademy.org";
@@ -15,6 +15,18 @@ export const fetchCar = createAsyncThunk("fetchCar", async (params) => {
   return response.data.cars;
 });
 
+//1 pertama tambah asyncthunk
+export const addCar = createAsyncThunk("addCar", async (params) => {
+  const response = await axios.post(`${URL}/admin/car`, {
+    headers: {
+      access_token: token,
+    },
+    params,
+  });
+  return response.data.cars;
+});
+
+// nilai awal
 const initialState = {
   carList: [],
   params: {},
@@ -28,6 +40,9 @@ const carSlice = createSlice({
     filterCategory: (state, action) => {
       state.params.category = action.payload;
     },
+
+
+ 
     // menampilkan list car berdasarkan pencarian nama mobil
     filterName: (state, action) => {
       state.params.name = action.payload;
@@ -35,6 +50,7 @@ const carSlice = createSlice({
     // menghilangkan riwayat filter sebelumnya
     resetFilter: (state) => {
       state.params = {};
+
     },
   },
   extraReducers: (builder) => {
@@ -42,8 +58,15 @@ const carSlice = createSlice({
     builder.addCase(fetchCar.fulfilled, (state, action) => {
       state.carList = action.payload;
     });
+
+    // bikin addcar
+    builder.addCase(addCar.fulfilled, (state, action) => {
+      state.carList = action.payload;
+    });
   },
 });
 
+
 export const { filterCategory, filterName, resetFilter } = carSlice.actions;
+
 export default carSlice.reducer;
