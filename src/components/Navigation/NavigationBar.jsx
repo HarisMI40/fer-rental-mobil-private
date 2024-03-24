@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { Avatar } from "flowbite-react";
 
 const NavigationBar = () => {
-  const role = localStorage.getItem("role");
+  const role = localStorage.getItem("role") || ""; // default empty string kalau role kosong
   const email = localStorage.getItem("email");
-  var initials = role.toString().charAt(0);
+  const initials = role ? role.toString().charAt(0) : ""; // pakai empty string if kalau role salah
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

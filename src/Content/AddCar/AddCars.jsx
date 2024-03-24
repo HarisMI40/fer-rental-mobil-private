@@ -8,6 +8,7 @@ import axios from "axios";
 import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {FiChevronRight} from "react-icons/fi";
+const token =localStorage.getItem('token_Admin')
 
 const AddCars = () => {
   // nilai kosong untuk ngambil data componen
@@ -19,6 +20,10 @@ const AddCars = () => {
   });
 
   const navigate = useNavigate();
+
+  const handleCancel = () => {
+    navigate("/cars");
+  };
 
   const handleSubmit = async (e) => {
     // ini untuk handle biar gak redirect link
@@ -40,7 +45,7 @@ const AddCars = () => {
         {
           headers: {
             access_token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc",
+              token,
           },
         }
       );
@@ -160,6 +165,7 @@ const AddCars = () => {
               Cancel
             </button>
           </Link>
+
 
           <input
             className="save_button bg-blue-900"

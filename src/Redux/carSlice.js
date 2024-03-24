@@ -2,8 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const URL = "https://api-car-rental.binaracademy.org";
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNTMzMTc5N30.BPM3cOObRc3Kcxs8vGt3OF86J7Ti620px2otHfCCTJo";
+const token =localStorage.getItem('token_Admin');
 
 export const fetchCar = createAsyncThunk("fetchCar", async (params) => {
   const response = await axios.get(`${URL}/admin/v2/car`, {
