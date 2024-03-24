@@ -5,11 +5,11 @@ import Fotoinput from "../../components/Inputdata/Fotoinput";
 import Selectinput from "../../components/Inputdata/Selectinput";
 
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FiChevronRight } from "react-icons/fi";
-
+import {useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {FiChevronRight} from "react-icons/fi";
 const token =localStorage.getItem('token_Admin')
+
 const AddCars = () => {
   // nilai kosong untuk ngambil data componen
   const [values, setValues] = useState({
@@ -92,7 +92,8 @@ const AddCars = () => {
         </ol>
       </nav>
       <div className="cars-section mt-10">
-        <h1 className="text-black font-bold text-xl mb-4">Edit Car</h1>
+        <h1 className="text-black font-bold text-xl mb-4">Add Car</h1>
+
         {/*  isi content  */}
         {/* <EditCars /> */}
 
@@ -100,12 +101,12 @@ const AddCars = () => {
           <div className="bg_putih gap-16px">
             <Inputfield
               label="Nama / Tipe Mobil*"
-              // value={values.name}
+              value={values.name}
               // onchange -> apabila variabel berubah
               onChange={(e) => {
-                console.log({ ...values, name: e.target.value });
+                console.log({...values, name: e.target.value});
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({ ...values, name: e.target.value });
+                setValues({...values, name: e.target.value});
               }}
               inputProps={{
                 type: "text",
@@ -115,10 +116,11 @@ const AddCars = () => {
 
             <Inputfield
               label="Harga*"
+              value={values.harga}
               onChange={(e) => {
-                console.log({ ...values, harga: e.target.value });
+                console.log({...values, harga: e.target.value});
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({ ...values, harga: e.target.value });
+                setValues({...values, harga: e.target.value});
               }}
               inputProps={{
                 type: "text",
@@ -130,9 +132,9 @@ const AddCars = () => {
               // value={values.file}
               // onchange -> apabila variabel berubah
               onChange={(e) => {
-                console.log({ ...values, file: e.target.files });
+                console.log({...values, file: e.target.files});
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({ ...values, file: e.target.files });
+                setValues({...values, file: e.target.files});
               }}
               inputProps={{
                 type: "file",
@@ -142,10 +144,14 @@ const AddCars = () => {
 
             <Selectinput
               label="Kategori*"
+              // defaultValue={values.kategori}
+
+              value={values.kategori}
+              // defaultValue={values.kategori}
               onChange={(e) => {
-                console.log({ ...values, kategori: e.target.value });
+                // console.log({...values, kategori: e.target.value});
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({ ...values, kategori: e.target.value });
+                setValues({...values, kategori: e.target.value});
               }}
               inputProps={{
                 type: "text",
@@ -154,13 +160,12 @@ const AddCars = () => {
             />
           </div>
 
-          <button
-          className="cancel_button bg-white"
-          type="button"
-          onClick={handleCancel}
-          >
-          Cancel
-          </button>
+          <Link to="/cars">
+            <button className="cancel_button bg-white" type="button">
+              Cancel
+            </button>
+          </Link>
+
 
           <input
             className="save_button bg-blue-900"
