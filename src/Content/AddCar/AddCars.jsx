@@ -80,7 +80,7 @@ const AddCars = () => {
             <div className="flex items-center">
               <FiChevronRight color="black" />
               <span className="ms-1  font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-                Add Car
+                Add New Car
               </span>
             </div>
           </li>
@@ -164,7 +164,7 @@ const AddCars = () => {
           <input
             className="save_button bg-blue-900"
             type="submit"
-            value="Edit"
+            value="Save"
           />
         </form>
       </div>
