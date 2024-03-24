@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FiChevronRight } from "react-icons/fi";
 
+const token =localStorage.getItem('token_Admin')
 const EditCar = () => {
   //untuk ambil nilai ID dari link menggunakan params
   const params = useParams();
@@ -26,7 +27,7 @@ const EditCar = () => {
         {
           headers: {
             access_token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcxMTAzODM2MH0.yv1tFeGtGeJKpJmIL1z-hZTnbLlfXyKQEKwFKqXPqy0",
+           token,
           },
         }
       );

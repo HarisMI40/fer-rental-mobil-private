@@ -4,6 +4,7 @@ import "./Inputdata.css";
 import iconfoto from "../../../src/assets/img/inputimage/fi_upload.png";
 import {useNavigate} from "react-router-dom";
 
+const token =localStorage.getItem('token_Admin')
 const Editdata = () => {
   const navigate = useNavigate();
 
@@ -33,7 +34,7 @@ const Editdata = () => {
         {
           headers: {
             access_token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc",
+              token,
           },
         }
       );
