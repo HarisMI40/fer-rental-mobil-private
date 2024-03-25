@@ -12,6 +12,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@jest/globals": "^29.7.0",
     "@preact/signals-react": "^2.0.1",
     "@reduxjs/toolkit": "^2.2.1",
     "@testing-library/jest-dom": "^6.4.2",
