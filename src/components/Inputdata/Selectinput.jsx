@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 import "./Inputdata.css";
-const Selectinput = ({label, inputProps, onChange, value, defaultValue}) => {
+const Selectinput = ({ label, inputProps, onChange, value, defaultValue }) => {
   return (
     <>
       <div className="flex mb-4 ">
         <div className="w-1/5  text_div">
-          <label className="text_inputan">{label}</label>
+          <label className="text_inputan text-slate-700">{label}</label>
         </div>
         <div className="w-1/2 ">
           <select
-            className="inputan"
+            className="inputan text-slate-700"
             {...inputProps}
             onChange={onChange}
             value={value}
