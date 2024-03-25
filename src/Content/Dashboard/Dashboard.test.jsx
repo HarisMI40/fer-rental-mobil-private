@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, test, vi } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import Dashboard from "./Dashboard";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
