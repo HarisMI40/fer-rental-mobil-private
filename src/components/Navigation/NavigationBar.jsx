@@ -11,14 +11,12 @@ const NavigationBar = () => {
   const email = localStorage.getItem("email");
   const initials = role ? role.toString().charAt(0) : ""; // pakai empty string if kalau role salah
 
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [hidden, setHidden] = useState(true);
   const [name, setName] = useState("");
   const handleClick = (name) => {
     if (name) {
-      dispatch(resetFilter());
       dispatch(filterName(name));
       navigate("/cars");
     } else {
