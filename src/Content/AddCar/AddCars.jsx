@@ -5,10 +5,10 @@ import Fotoinput from "../../components/Inputdata/Fotoinput";
 import Selectinput from "../../components/Inputdata/Selectinput";
 
 import axios from "axios";
-import {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {FiChevronRight} from "react-icons/fi";
-const token =localStorage.getItem('token_Admin')
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FiChevronRight } from "react-icons/fi";
+const token = localStorage.getItem("token_Admin");
 
 const AddCars = () => {
   // nilai kosong untuk ngambil data componen
@@ -20,10 +20,6 @@ const AddCars = () => {
   });
 
   const navigate = useNavigate();
-
-  const handleCancel = () => {
-    navigate("/cars");
-  };
 
   const handleSubmit = async (e) => {
     // ini untuk handle biar gak redirect link
@@ -44,8 +40,7 @@ const AddCars = () => {
         formData,
         {
           headers: {
-            access_token:
-              token,
+            access_token: token,
           },
         }
       );
@@ -104,9 +99,9 @@ const AddCars = () => {
               value={values.name}
               // onchange -> apabila variabel berubah
               onChange={(e) => {
-                console.log({...values, name: e.target.value});
+                console.log({ ...values, name: e.target.value });
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({...values, name: e.target.value});
+                setValues({ ...values, name: e.target.value });
               }}
               inputProps={{
                 type: "text",
@@ -118,9 +113,9 @@ const AddCars = () => {
               label="Harga*"
               value={values.harga}
               onChange={(e) => {
-                console.log({...values, harga: e.target.value});
+                console.log({ ...values, harga: e.target.value });
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({...values, harga: e.target.value});
+                setValues({ ...values, harga: e.target.value });
               }}
               inputProps={{
                 type: "text",
@@ -132,9 +127,9 @@ const AddCars = () => {
               // value={values.file}
               // onchange -> apabila variabel berubah
               onChange={(e) => {
-                console.log({...values, file: e.target.files});
+                console.log({ ...values, file: e.target.files });
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({...values, file: e.target.files});
+                setValues({ ...values, file: e.target.files });
               }}
               inputProps={{
                 type: "file",
@@ -151,7 +146,7 @@ const AddCars = () => {
               onChange={(e) => {
                 // console.log({...values, kategori: e.target.value});
                 // untuk mengambil perubahan data, kenapa pakek {...} karena diambil objek
-                setValues({...values, kategori: e.target.value});
+                setValues({ ...values, kategori: e.target.value });
               }}
               inputProps={{
                 type: "text",
@@ -161,14 +156,16 @@ const AddCars = () => {
           </div>
 
           <Link to="/cars">
-            <button className="cancel_button bg-white" type="button">
+            <button
+              className="cancel_button bg-white cursor-pointer hover:bg-slate-200"
+              type="button"
+            >
               Cancel
             </button>
           </Link>
 
-
           <input
-            className="save_button bg-blue-900"
+            className="save_button bg-blue-900 cursor-pointer hover:bg-blue-600"
             type="submit"
             value="Save"
           />

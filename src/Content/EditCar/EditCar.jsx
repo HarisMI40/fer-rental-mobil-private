@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FiChevronRight } from "react-icons/fi";
 
-const token =localStorage.getItem('token_Admin')
+const token = localStorage.getItem("token_Admin");
 const EditCar = () => {
   //untuk ambil nilai ID dari link menggunakan params
   const params = useParams();
@@ -26,8 +26,7 @@ const EditCar = () => {
         `https://api-car-rental.binaracademy.org/admin/car/${params.id}`,
         {
           headers: {
-            access_token:
-           token,
+            access_token: token,
           },
         }
       );
@@ -187,13 +186,16 @@ const EditCar = () => {
           </div>
 
           <Link to="/cars">
-            <button className="cancel_button bg-white" type="button">
+            <button
+              className="cancel_button bg-white cursor-pointer hover:bg-slate-200"
+              type="button"
+            >
               Cancel
             </button>
           </Link>
 
           <input
-            className="save_button bg-blue-900"
+            className="save_button bg-blue-900 cursor-pointer hover:bg-blue-600"
             type="submit"
             value="Edit"
           />
